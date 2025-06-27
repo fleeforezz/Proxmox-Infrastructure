@@ -1,0 +1,57 @@
+resource "proxmox_vm_qemu" "vm" {
+  name   = var.vm_name
+  agent  = 1
+  onboot = true
+  desc   = "Cloudinit Cockpit Management Server"
+  tags   = var.tags
+
+  # OS
+  clone       = var.clone_template
+  full_clone  = true
+  target_node = var.target_node
+  os_type     = "cloud-init"
+  bios        = "seabios"
+
+  # Disk
+  disks {
+    ide {
+      ide2 {
+        cloudinit {
+          storage = var.storage_pool
+        }
+      }
+    }
+    scsi {
+      scsi0 {
+        disk {
+          storage = var.storage_pool
+          size    = var.disk_size_gb
+        }
+      }
+    }
+  }
+  boot     = "order=scsi0;net0"
+  bootdisk = "scsi0"
+
+  # CPU
+  cpu {
+    sockets = 1
+    cores   = var.cpu_cores
+    limit   = 0
+    type    = "x86-64-v2-AES"
+  }
+
+  # Memory
+  memory = var.memory_mb
+
+  # Network
+  network {
+    id       = 0
+    bridge   = var.network_bridge
+    firewall = true
+    model    = "virtio"
+  }
+  ipconfig0  = "ip=${var.ip_address},gw=${var.gateway}"
+  nameserver = var.nameserver
+  sshkeys = var.ssh_public_key
+}

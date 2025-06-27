@@ -1,0 +1,32 @@
+variable "proxmox_api_url" {
+  type        = string
+  description = "Proxmox API URL"
+}
+
+variable "proxmox_api_token_id" {
+  type        = string
+  description = "Promox API token Id"
+}
+
+variable "proxmox_api_token_secret" {
+  type        = string
+  description = "Promox API token secret"
+}
+
+variable "proxmox_tls_insecure" {
+  type        = bool
+  description = "Skip TLS verification"
+  default     = true
+}
+
+variable "ssh_public_key" {
+  type        = string
+  sensitive   = true
+  description = "SSH public key for VM access"
+}
+
+variable "environment" {
+  type = string
+  default = "prod"
+  description = "Environment name"
+}
