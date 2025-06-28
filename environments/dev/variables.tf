@@ -53,15 +53,16 @@ variable "nameserver" {
   default     = "1.1.1.1,1.0.0.1"
 }
 
+# SSH Configuration
 variable "ssh_public_key" {
   type        = string
   sensitive   = true
   description = "SSH public key for VM access"
 }
 
+# Project Configuration
 variable "project_name" {
   type = string
   default = "proxmox-infra"
   description = "Project name for resource naming"
 }
-
