@@ -58,7 +58,6 @@ resource "proxmox_vm_qemu" "cloudinit-Cockpit-Management-server" {
   nameserver = "1.1.1.1, 1.0.0.1"
 
   # SSH keys
-  sshkeys = 
 }
 
 resource "proxmox_vm_qemu" "cloudinit-Portainer-Management-server" {

@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "vm" {
   name   = var.vm_name
   agent  = 1
   onboot = true
-  desc   = "Cloudinit Cockpit Management Server"
+  desc   = var.description
   tags   = var.tags
 
   # OS

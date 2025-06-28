@@ -43,6 +43,11 @@ variable "network_bridge" {
   description = "Network bridge"
 }
 
+variable "ip_address" {
+  type        = string
+  description = "The static IP address of the VM with CIDR suffix (e.g. 10.0.1.51/24)"
+}
+
 variable "gateway" {
   type = string
   default = "Gateway IP"
@@ -50,7 +55,7 @@ variable "gateway" {
 
 variable "nameserver" {
   type = string
-  default = "1.1.1.1, 1.0.0.1"
+  default = "1.1.1.1,1.0.0.1"
   description = "DNS servers"
 }
 
@@ -64,4 +69,10 @@ variable "tags" {
   type = string
   default = ""
   description = "VM tags"
+}
+
+variable "description" {
+  type = string
+  default = ""
+  description = "Server description"
 }
