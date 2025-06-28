@@ -179,3 +179,29 @@ module "security_server" {
 
   description = "Security Server - ${local.environment}"
 }
+
+#============
+# Game Server
+#============
+module "security_server" {
+  source = "../../modules/proxmox-vm"
+
+  vm_name = "game-${var.environment}"
+  target_node = "pve1"
+  clone_template = "ubn-temp-1"
+
+  cpu_cores = 8
+  memory_mb = 16384
+  disk_size_gb = 50
+  storage_pool = var.storage_pool
+  
+  network_bridge = var.network_bridge
+  ip_address = "${local.second_network_base}.100/24"
+  gateway = "${local.second_network_base}.1"
+  nameserver = var.nameserver
+
+  ssh_public_key = var.ssh_public_key
+  tags = "game,${var.environment}"
+
+  description = "Game Server - ${local.environment}"
+}
