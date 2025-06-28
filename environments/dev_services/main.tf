@@ -118,14 +118,14 @@ module "reverse_proxy_server" {
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
-  ip_address = "${local.second_network_base}.78/24"
-  gateway = "${local.second_network_base}.1"
+  ip_address = "${local.network_base}.90/24"
+  gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
   ssh_public_key = var.ssh_public_key
-  tags = "network,${var.environment}"
+  tags = "reverse-proxy,network,${var.environment}"
 
-  description = "Network Gate Server - ${local.environment}"
+  description = "Reverse Proxy Server - ${local.environment}"
 }
 
 #==================
@@ -144,14 +144,14 @@ module "monitoring_server" {
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
-  ip_address = "${local.second_network_base}.60/24"
-  gateway = "${local.second_network_base}.1"
+  ip_address = "${local.network_base}.60/24"
+  gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
   ssh_public_key = var.ssh_public_key
-  tags = "network,${var.environment}"
+  tags = "monitoring,${var.environment}"
 
-  description = "Network Gate Server - ${local.environment}"
+  description = "Monitoring Server - ${local.environment}"
 }
 
 #================
@@ -160,7 +160,7 @@ module "monitoring_server" {
 module "security_server" {
   source = "../../modules/proxmox-vm"
 
-  vm_name = "monitoring-${var.environment}"
+  vm_name = "security-${var.environment}"
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 
@@ -170,12 +170,12 @@ module "security_server" {
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
-  ip_address = "${local.second_network_base}.60/24"
-  gateway = "${local.second_network_base}.1"
+  ip_address = "${local.network_base}.70/24"
+  gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
   ssh_public_key = var.ssh_public_key
-  tags = "network,${var.environment}"
+  tags = "security,${var.environment}"
 
-  description = "Network Gate Server - ${local.environment}"
+  description = "Security Server - ${local.environment}"
 }
