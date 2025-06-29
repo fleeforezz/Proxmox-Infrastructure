@@ -24,16 +24,16 @@ provider "proxmox" {
 }
 
 # Cockpit Management Server
-module "cockpit_server" {
+module "development_server" {
   source = "../../modules/proxmox_vm"
 
-  vm_name = "cockpit-${var.environment}"
+  vm_name = "development-${var.environment}"
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 2
-  memory_mb = 8192
-  disk_size_gb = 32
+  cpu_cores = 8
+  memory_mb = 16384
+  disk_size_gb = 70
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
@@ -47,5 +47,49 @@ module "cockpit_server" {
   description = "Cockpit Management Server - ${local.environment}"
 }
 
+module "k8s-master-1-server" {
+  source = "../../modules/proxmox_vm"
 
+  vm_name = "development-${var.environment}"
+  target_node = "pve1"
+  clone_template = "ubn-temp-1"
+
+  cpu_cores = 8
+  memory_mb = 16384
+  disk_size_gb = 100
+  storage_pool = var.storage_pool
+
+  network_bridge = var.network_bridge
+  ip_address = "${local.network_base}.32/24"
+  gateway = "${local.network_base}.1"
+  nameserver = var.nameserver
+
+  ssh_public_key = var.ssh_public_key
+  tags = "management,${var.environment}"
+
+  description = "Cockpit Management Server - ${local.environment}"
+}
+
+module "k8s-worker-1-server" {
+  source = "../../modules/proxmox_vm"
+
+  vm_name = "development-${var.environment}"
+  target_node = "pve1"
+  clone_template = "ubn-temp-1"
+
+  cpu_cores = 8
+  memory_mb = 16384
+  disk_size_gb = 100
+  storage_pool = var.storage_pool
+
+  network_bridge = var.network_bridge
+  ip_address = "${local.network_base}.32/24"
+  gateway = "${local.network_base}.1"
+  nameserver = var.nameserver
+
+  ssh_public_key = var.ssh_public_key
+  tags = "management,${var.environment}"
+
+  description = "Cockpit Management Server - ${local.environment}"
+}
 

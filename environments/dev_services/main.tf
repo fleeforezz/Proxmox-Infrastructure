@@ -183,7 +183,7 @@ module "security_server" {
 #============
 # Game Server
 #============
-module "security_server" {
+module "game_server" {
   source = "../../modules/proxmox-vm"
 
   vm_name = "game-${var.environment}"
