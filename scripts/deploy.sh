@@ -39,9 +39,9 @@ show_usage() {
 Usage: $0 [ENVIRONMENT] [OPTIONS]
 
 ENVIRONMENT:
-    dev         Deploy to development environment (default)
-    staging     Deploy to staging environment
-    prod        Deploy to production environment
+    dev-services     Deploy to development service environment
+    dev              Deploy to development environment (default)
+    prod             Deploy to production environment
 
 OPTIONS:
     -a, --auto-approve    Auto approve the apply (skip confirmation)
@@ -53,7 +53,7 @@ OPTIONS:
 Examples:
     $0                          # Deploy to dev environment
     $0 prod                     # Deploy to production
-    $0 staging --plan-only      # Only plan staging deployment
+    $0 dev --plan-only          # Only plan dev deployment
     $0 prod --auto-approve      # Deploy to prod without confirmation
 EOF
 }
