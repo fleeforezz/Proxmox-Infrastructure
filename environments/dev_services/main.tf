@@ -61,8 +61,8 @@ module "cockpit_management_server" {
   clone_template = "ubn-temp-1"
 
   cpu_cores = 3
-  memory_mb = 8192
-  disk_size_gb = 32
+  memory_mb = 4048
+  disk_size_gb = 25
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
@@ -87,8 +87,8 @@ module "network_gate_server" {
   clone_template = "ubn-temp-1"
 
   cpu_cores = 2
-  memory_mb = 2024
-  disk_size_gb = 15
+  memory_mb = 1024
+  disk_size_gb = 10
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
@@ -140,7 +140,7 @@ module "monitoring_server" {
 
   cpu_cores = 2
   memory_mb = 2024
-  disk_size_gb = 32
+  disk_size_gb = 35
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
@@ -164,8 +164,8 @@ module "security_server" {
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 2
-  memory_mb = 2024
+  cpu_cores = 4
+  memory_mb = 4048
   disk_size_gb = 32
   storage_pool = var.storage_pool
   

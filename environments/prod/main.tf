@@ -40,7 +40,7 @@ module "reverse_proxy_server" {
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.90/24"
+  ip_address = "${local.network_base}.45/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
@@ -62,11 +62,11 @@ module "monitoring_server" {
 
   cpu_cores = 2
   memory_mb = 2024
-  disk_size_gb = 32
+  disk_size_gb = 35
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.60/24"
+  ip_address = "${local.network_base}.67/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
@@ -92,7 +92,7 @@ module "block_storage_server" {
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.60/24"
+  ip_address = "${local.network_base}.89/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
@@ -102,9 +102,9 @@ module "block_storage_server" {
   description = "Block Storage Server - ${local.environment}"
 }
 
-#=====================
+#================
 # Database Server
-#=====================
+#================
 module "database_server" {
   source = "../../modules/proxmox_vm"
 
@@ -118,7 +118,7 @@ module "database_server" {
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.60/24"
+  ip_address = "${local.network_base}.55/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
@@ -144,7 +144,7 @@ module "k8s_master_1_server" {
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.60/24"
+  ip_address = "${local.network_base}.80/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
@@ -170,7 +170,7 @@ module "k8s_master_1_server" {
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.60/24"
+  ip_address = "${local.network_base}.86/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 

@@ -23,7 +23,9 @@ provider "proxmox" {
   pm_tls_insecure = var.proxmox_tls_insecure
 }
 
-# Cockpit Management Server
+#===================
+# Development Server
+#===================
 module "development_server" {
   source = "../../modules/proxmox_vm"
 
@@ -37,59 +39,65 @@ module "development_server" {
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.32/24"
+  ip_address = "${local.network_base}.80/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
   ssh_public_key = var.ssh_public_key
-  tags = "management,${var.environment}"
+  tags = "development,${var.environment}"
 
-  description = "Cockpit Management Server - ${local.environment}"
+  description = "Development Server - ${local.environment}"
 }
 
-module "k8s-master-1-server" {
+#========================
+# Dev K8s Master 1 Server
+#========================
+module "dev-k8s-master-1-server" {
   source = "../../modules/proxmox_vm"
 
-  vm_name = "development-${var.environment}"
+  vm_name = "dev-k8s-master-1-${var.environment}"
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 8
-  memory_mb = 16384
-  disk_size_gb = 100
+  cpu_cores = 3
+  memory_mb = 4048
+  disk_size_gb = 32
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.32/24"
+  ip_address = "${local.network_base}.52/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
   ssh_public_key = var.ssh_public_key
-  tags = "management,${var.environment}"
+  tags = "container-orchestration,${var.environment}"
 
-  description = "Cockpit Management Server - ${local.environment}"
+  description = "Dev K8s Master 1 Server - ${local.environment}"
 }
 
-module "k8s-worker-1-server" {
+#========================
+# Dev K8s Worker 1 Server
+#========================
+module "dev-k8s-worker-1-server" {
   source = "../../modules/proxmox_vm"
 
-  vm_name = "development-${var.environment}"
+  vm_name = "dev-k8s-worker-1-${var.environment}"
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 8
-  memory_mb = 16384
-  disk_size_gb = 100
+  cpu_cores = 3
+  memory_mb = 4048
+  disk_size_gb = 32
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.32/24"
+  ip_address = "${local.network_base}.53/24"
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
   ssh_public_key = var.ssh_public_key
-  tags = "management,${var.environment}"
+  tags = "container-orchestration,${var.environment}"
 
-  description = "Cockpit Management Server - ${local.environment}"
+  description = "Dev K8s Worker 1 Server - ${local.environment}"
 }
 
