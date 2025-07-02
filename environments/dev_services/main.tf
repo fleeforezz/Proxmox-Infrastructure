@@ -44,7 +44,7 @@ module "gitlab_server" {
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "version-control,${var.environment}"
 
   description = "Gitlab Version Control Server - ${local.environment}"
@@ -70,7 +70,7 @@ module "cockpit_management_server" {
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "management,${var.environment}"
 
   description = "Cockpit Management Server - ${local.environment}"
@@ -96,7 +96,7 @@ module "network_gate_server" {
   gateway = "${local.second_network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "network,${var.environment}"
 
   description = "Network Gate Server - ${local.environment}"
@@ -122,7 +122,7 @@ module "reverse_proxy_server" {
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "reverse-proxy,network,${var.environment}"
 
   description = "Reverse Proxy Server - ${local.environment}"
@@ -148,7 +148,7 @@ module "monitoring_server" {
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "monitoring,${var.environment}"
 
   description = "Monitoring Server - ${local.environment}"
@@ -174,7 +174,7 @@ module "security_server" {
   gateway = "${local.network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "security,${var.environment}"
 
   description = "Security Server - ${local.environment}"
@@ -200,7 +200,7 @@ module "game_server" {
   gateway = "${local.second_network_base}.1"
   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
+  ssh_public_key = [var.ssh_public_key]
   tags = "game,${var.environment}"
 
   description = "Game Server - ${local.environment}"

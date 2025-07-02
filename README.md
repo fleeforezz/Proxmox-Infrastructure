@@ -19,3 +19,9 @@ This repository contains Terraform configurations for managing Proxmox VE infras
 - **prod** - Production environment (10.0.3.x)
 
 See `docs/` for detailed documentation.
+
+Install jq if system not already installed
+```sh
+sudo apt update
+sudo apt install jq
+```

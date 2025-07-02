@@ -61,7 +61,7 @@ variable "nameserver" {
 # SSH Configuration
 #==================
 variable "ssh_public_key" {
-  type        = string
+  type        = list(string)
   sensitive   = true
   description = "SSH public key for VM access"
 }

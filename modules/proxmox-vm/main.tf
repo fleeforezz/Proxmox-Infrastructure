@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source = "telmate/proxmox"
+    }
+  }
+}
+
 resource "proxmox_vm_qemu" "vm" {
   name   = var.vm_name
   agent  = 1
@@ -53,5 +61,5 @@ resource "proxmox_vm_qemu" "vm" {
   }
   ipconfig0  = "ip=${var.ip_address},gw=${var.gateway}"
   nameserver = var.nameserver
-  sshkeys = var.ssh_public_key
+  sshkeys    = var.ssh_public_key
 }

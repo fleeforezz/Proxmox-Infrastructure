@@ -1,50 +1,50 @@
 locals {
-  environment = "dev"
+  environment  = "dev"
   network_base = "10.0.1"
   common_tags = {
     Environment = local.environment
-    Managed_by = "terraform"
+    Managed_by  = "terraform"
   }
 }
 
 terraform {
   required_providers {
     proxmox = {
-      source = "Telmate/proxmox"
+      source  = "telmate/proxmox"
       version = "3.0.2-rc01"
     }
   }
 }
 
 provider "proxmox" {
-  pm_api_url = var.proxmox_api_url
-  pm_api_token_id = var.proxmox_api_token_id
+  pm_api_url          = var.proxmox_api_url
+  pm_api_token_id     = var.proxmox_api_token_id
   pm_api_token_secret = var.proxmox_api_token_secret
-  pm_tls_insecure = var.proxmox_tls_insecure
+  pm_tls_insecure     = var.proxmox_tls_insecure
 }
 
 #===================
 # Development Server
 #===================
 module "development_server" {
-  source = "../../modules/proxmox_vm"
+  source = "../../modules/proxmox-vm"
 
-  vm_name = "development-${var.environment}"
-  target_node = "pve1"
+  vm_name        = "development-${var.environment}"
+  target_node    = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 8
-  memory_mb = 16384
+  cpu_cores    = 8
+  memory_mb    = 16384
   disk_size_gb = 70
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.80/24"
-  gateway = "${local.network_base}.1"
-  nameserver = var.nameserver
+  ip_address     = "${local.network_base}.80/24"
+  gateway        = "${local.network_base}.1"
+  nameserver     = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
-  tags = "development,${var.environment}"
+  ssh_public_key = join("\n", var.ssh_public_key)
+  tags           = "development,${var.environment}"
 
   description = "Development Server - ${local.environment}"
 }
@@ -53,24 +53,24 @@ module "development_server" {
 # Dev K8s Master 1 Server
 #========================
 module "dev_k8s_master_1_server" {
-  source = "../../modules/proxmox_vm"
+  source = "../../modules/proxmox-vm"
 
-  vm_name = "dev_k8s_master_1-${var.environment}"
-  target_node = "pve1"
+  vm_name        = "dev_k8s_master_1-${var.environment}"
+  target_node    = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 3
-  memory_mb = 4048
+  cpu_cores    = 3
+  memory_mb    = 4048
   disk_size_gb = 32
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.52/24"
-  gateway = "${local.network_base}.1"
-  nameserver = var.nameserver
+  ip_address     = "${local.network_base}.52/24"
+  gateway        = "${local.network_base}.1"
+  nameserver     = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
-  tags = "container-orchestration,${var.environment}"
+  ssh_public_key = join("\n", var.ssh_public_key)
+  tags           = "container-orchestration,${var.environment}"
 
   description = "Dev K8s Master 1 Server - ${local.environment}"
 }
@@ -79,24 +79,24 @@ module "dev_k8s_master_1_server" {
 # Dev K8s Worker 1 Server
 #========================
 module "dev_k8s_worker_1_server" {
-  source = "../../modules/proxmox_vm"
+  source = "../../modules/proxmox-vm"
 
-  vm_name = "dev_k8s_worker_1-${var.environment}"
-  target_node = "pve1"
+  vm_name        = "dev_k8s_worker_1-${var.environment}"
+  target_node    = "pve1"
   clone_template = "ubn-temp-1"
 
-  cpu_cores = 3
-  memory_mb = 4048
+  cpu_cores    = 3
+  memory_mb    = 4048
   disk_size_gb = 32
   storage_pool = var.storage_pool
 
   network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.53/24"
-  gateway = "${local.network_base}.1"
-  nameserver = var.nameserver
+  ip_address     = "${local.network_base}.53/24"
+  gateway        = "${local.network_base}.1"
+  nameserver     = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
-  tags = "container-orchestration,${var.environment}"
+  ssh_public_key = join("\n", var.ssh_public_key)
+  tags           = "container-orchestration,${var.environment}"
 
   description = "Dev K8s Worker 1 Server - ${local.environment}"
 }

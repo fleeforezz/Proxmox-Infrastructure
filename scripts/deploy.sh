@@ -95,10 +95,10 @@ done
 
 # Set working directory if not specified
 if [[ -z "$WORKING_DIR" ]]; then
-    WORKING_DIR="../environments/$ENVIRONMENT"
+    WORKING_DIR="./environments/$ENVIRONMENT"
 fi
 
-# Check if woking directory exists
+# Check if working directory exists
 if [[ ! -d "$WORKING_DIR" ]]; then
     print_error "Working directory '$WORKING_DIR' does not exist"
     exit 1
@@ -158,12 +158,23 @@ check_prerequisites() {
     print_status "Using Terraform version: $TERRAFORM_VERSION"
 
     # Check if required files exist
-    local required_files=("$WORKING_DIR/main.tf" "$WORKING_DIR/variables.tf")
+    local required_files=("main.tf" "variables.tf")
+    local missing_files=()
+
     for file in "${required_files[@]}"; do
         if [[ ! -f "$file" ]]; then
-            print_error "Required file not found: $file"
+            missing_files+=("$file")
+            print_error "Required file not found: $PWD/$file"
+        else 
+            print_status "Found required file: $file"
         fi
     done
+
+    # Exit if any required files are missing
+    if [[ ${#missing_files[@]} -gt 0 ]]; then
+        print_error "Missing ${#missing_files[@]} required file(s). Cannot proceed."
+        exit 1
+    fi
 
     print_success "Prerequisites check passed"
 }
@@ -210,7 +221,7 @@ main() {
     fi
 
     # Create and show plan
-    print_status "Creating depoyment plan..."
+    print_status "Creating deployment plan..."
     if [[ "$VERBOSE" == "true" ]]; then
         terraform plan -out=tfplan
     else
@@ -232,7 +243,7 @@ main() {
     backup_state
 
     # Apply the plan
-    if [[ "$AUTO_APPROVE" =="true" ]]; then
+    if [[ "$AUTO_APPROVE" == "true" ]]; then
         print_status "Auto applying deployment plan..."
         run_terraform "apply tfplan"
     else 
@@ -247,7 +258,7 @@ main() {
 
     # Show outputs
     print_status "Deployment outputs:"
-    terraform_output
+    terraform output
 }
 
 # Trap to clean up on exit

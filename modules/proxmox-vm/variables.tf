@@ -14,32 +14,32 @@ variable "clone_template" {
 }
 
 variable "cpu_cores" {
-  type = number
-  default = 1
+  type        = number
+  default     = 1
   description = "Number of CPU cores"
 }
 
 variable "memory_mb" {
-  type = number
-  default = 1024
+  type        = number
+  default     = 1024
   description = "Memory in MB"
 }
 
 variable "disk_size_gb" {
-  type = number
-  default = 10
+  type        = number
+  default     = 10
   description = "Disk size in GB"
 }
 
 variable "storage_pool" {
-  type = string
-  default = "Fast500G"
+  type        = string
+  default     = "Fast500G"
   description = "Storage pool name"
 }
 
 variable "network_bridge" {
-  type = string
-  default = "vmbr1"
+  type        = string
+  default     = "vmbr1"
   description = "Network bridge"
 }
 
@@ -49,30 +49,30 @@ variable "ip_address" {
 }
 
 variable "gateway" {
-  type = string
+  type    = string
   default = "Gateway IP"
 }
 
 variable "nameserver" {
-  type = string
-  default = "1.1.1.1,1.0.0.1"
+  type        = string
+  default     = "1.1.1.1,1.0.0.1"
   description = "DNS servers"
 }
 
 variable "ssh_public_key" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "SSH public key"
 }
 
 variable "tags" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "VM tags"
 }
 
 variable "description" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "Server description"
 }

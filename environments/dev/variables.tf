@@ -8,13 +8,13 @@ variable "proxmox_api_url" {
 
 variable "proxmox_api_token_id" {
   type        = string
-  default = "terraform@pve"
+  default     = "terraform@pve"
   description = "Promox API token Id"
 }
 
 variable "proxmox_api_token_secret" {
   type        = string
-  sensitive = true
+  sensitive   = true
   description = "Promox API token secret"
 }
 
@@ -28,6 +28,12 @@ variable "proxmox_node" {
   description = "Proxmox node name"
   type        = string
   default     = "pve1"
+}
+
+variable "environment" {
+  type        = string
+  default     = "dev"
+  description = "Environment name"
 }
 
 #=================
@@ -61,7 +67,7 @@ variable "nameserver" {
 # SSH Configuration
 #==================
 variable "ssh_public_key" {
-  type        = string
+  type        = list(string)
   sensitive   = true
   description = "SSH public key for VM access"
 }
@@ -70,7 +76,7 @@ variable "ssh_public_key" {
 # Project Configuration
 #======================
 variable "project_name" {
-  type = string
-  default = "proxmox-infra"
+  type        = string
+  default     = "proxmox-infra"
   description = "Project name for resource naming"
 }
