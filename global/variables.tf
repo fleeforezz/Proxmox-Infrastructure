@@ -29,11 +29,11 @@ variable "ssh_public_key" {
 
 variable "environment" {
   type = string
-  default = "prod"
-  description = "Environment name (dev, staging, prod)"
+  default = "dev"
+  description = "Environment name (dev_services, dev, prod)"
   validation {
-    condition = condition(["dev", "prod"], var.environment)
-    error_message = "Environment must be dev or prod."
+    condition = condition(["dev_services", "dev", "prod"], var.environment)
+    error_message = "Environment must be dev_services, dev or prod."
   }
 }
 

@@ -52,10 +52,10 @@ module "development_server" {
 #========================
 # Dev K8s Master 1 Server
 #========================
-module "dev-k8s-master-1-server" {
+module "dev_k8s_master_1_server" {
   source = "../../modules/proxmox_vm"
 
-  vm_name = "dev-k8s-master-1-${var.environment}"
+  vm_name = "dev_k8s_master_1-${var.environment}"
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 
@@ -78,10 +78,10 @@ module "dev-k8s-master-1-server" {
 #========================
 # Dev K8s Worker 1 Server
 #========================
-module "dev-k8s-worker-1-server" {
+module "dev_k8s_worker_1_server" {
   source = "../../modules/proxmox_vm"
 
-  vm_name = "dev-k8s-worker-1-${var.environment}"
+  vm_name = "dev_k8s_worker_1-${var.environment}"
   target_node = "pve1"
   clone_template = "ubn-temp-1"
 

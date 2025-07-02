@@ -1,4 +1,6 @@
+#======================
 # Proxmox Configuration
+#======================
 variable "proxmox_api_url" {
   type        = string
   description = "Proxmox API URL"
@@ -28,7 +30,9 @@ variable "proxmox_node" {
   default     = "pve1"
 }
 
+#=================
 # VM Configuration
+#=================
 variable "vm_template" {
   description = "VM template to clone from"
   type        = string
@@ -53,14 +57,18 @@ variable "nameserver" {
   default     = "1.1.1.1,1.0.0.1"
 }
 
+#==================
 # SSH Configuration
+#==================
 variable "ssh_public_key" {
   type        = string
   sensitive   = true
   description = "SSH public key for VM access"
 }
 
+#======================
 # Project Configuration
+#======================
 variable "project_name" {
   type = string
   default = "proxmox-infra"

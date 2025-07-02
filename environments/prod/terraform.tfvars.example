@@ -7,4 +7,4 @@ proxmox_tls_insecure         = true
 
 ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAA... your-email@example.com"
 
-environment = "dev"
+environment = "prod"

@@ -157,7 +157,7 @@ module "k8s_master_1_server" {
 #====================
 # K8s Worker 1 Server
 #====================
-module "k8s_master_1_server" {
+module "k8s_worker_1_server" {
   source = "../../modules/proxmox_vm"
 
   vm_name = "k8s_worker_1_server-${var.environment}"
