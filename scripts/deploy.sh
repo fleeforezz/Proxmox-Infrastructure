@@ -95,7 +95,7 @@ done
 
 # Set working directory if not specified
 if [[ -z "$WORKING_DIR" ]]; then
-    WORKING_DIR="environment/$ENVIRONMENT"
+    WORKING_DIR="../environments/$ENVIRONMENT"
 fi
 
 # Check if woking directory exists
