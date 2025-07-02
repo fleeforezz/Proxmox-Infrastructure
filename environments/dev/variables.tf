@@ -45,6 +45,19 @@ variable "vm_template" {
   default     = "ubn-temp-1"
 }
 
+variable "ciuser" {
+  type        = string
+  default     = "user"
+  description = "Cloud init username"
+}
+
+variable "cipassword" {
+  type        = string
+  default     = ""
+  sensitive   = true
+  description = "Cloud init user password"
+}
+
 variable "storage_pool" {
   description = "Storage pool name"
   type        = string

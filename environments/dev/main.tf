@@ -43,6 +43,8 @@ module "development_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = "jso"
+  cipassword     = var.cipassword
   ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "development,${var.environment}"
 

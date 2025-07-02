@@ -20,6 +20,9 @@ resource "proxmox_vm_qemu" "vm" {
   os_type     = "cloud-init"
   bios        = "seabios"
   scsihw      = "virtio-scsi-single"
+  ciuser      = var.ciuser
+  cipassword  = var.cipassword
+  # ciupgrade   = true
 
   # Disk
   disks {

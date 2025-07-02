@@ -8,6 +8,19 @@ variable "target_node" {
   description = "Proxmox node to deploy"
 }
 
+variable "ciuser" {
+  type        = string
+  default     = "user"
+  description = "Cloud init username"
+}
+
+variable "cipassword" {
+  type        = string
+  default     = ""
+  sensitive   = true
+  description = "Cloud init user password"
+}
+
 variable "clone_template" {
   type        = string
   description = "Template to clone from"
