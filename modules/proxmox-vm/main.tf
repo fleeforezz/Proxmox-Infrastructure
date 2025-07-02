@@ -19,6 +19,7 @@ resource "proxmox_vm_qemu" "vm" {
   target_node = var.target_node
   os_type     = "cloud-init"
   bios        = "seabios"
+  scsihw      = "virtio-scsi-single"
 
   # Disk
   disks {
