@@ -1,6 +1,6 @@
 variable "vmid" {
-  type = number
-  default = null
+  type        = number
+  default     = null
   description = "Id of the VM"
 }
 
@@ -79,8 +79,8 @@ variable "nameserver" {
 }
 
 variable "display_type" {
-  type = string
-  default = "virtio-gl"
+  type        = string
+  default     = "virtio-gl"
   description = "Display type (serial, std, virtio-gl, etc.)"
 }
 
