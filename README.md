@@ -15,7 +15,7 @@ This repository contains Terraform configurations for managing Proxmox VE infras
 
 ## Environments
 - **dev** - Development environment (10.0.1.x)
-- **staging** - Staging environment (10.0.2.x)  
+- **dev-services** - Development Services environment (10.0.1.x)
 - **prod** - Production environment (10.0.3.x)
 
 See `docs/` for detailed documentation.
