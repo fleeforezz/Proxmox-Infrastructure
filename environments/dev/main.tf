@@ -59,9 +59,11 @@ module "development_server" {
 module "dev_k8s_master_1_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "k8s-master-1-${var.environment}"
   target_node    = var.proxmox_node
   clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 3
   memory_mb    = 4048
@@ -87,9 +89,11 @@ module "dev_k8s_master_1_server" {
 module "dev_k8s_worker_1_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "k8s-worker-1-${var.environment}"
   target_node    = var.proxmox_node
   clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 3
   memory_mb    = 4048

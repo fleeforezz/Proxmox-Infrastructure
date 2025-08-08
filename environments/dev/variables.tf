@@ -79,7 +79,7 @@ variable "nameserver" {
 variable "display_type" {
   type        = string
   default     = "virtio-gl"
-  description = "Display type for VM"
+  description = "Display type (serial, std, virtio-gl, etc.)"
 }
 
 #==================

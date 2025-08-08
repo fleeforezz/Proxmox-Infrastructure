@@ -81,7 +81,7 @@ variable "nameserver" {
 variable "display_type" {
   type = string
   default = "virtio-gl"
-  description = "Display for VM"
+  description = "Display type (serial, std, virtio-gl, etc.)"
 }
 
 variable "ssh_public_key" {
