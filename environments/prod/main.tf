@@ -1,6 +1,7 @@
 locals {
   environment = "prod"
-  network_base = "10.0.3"
+  # network_base = "10.0.3"
+  network_base = "10.0.1"
   second_network_base = "192.168.1"
   common_tags = {
     Environment = local.environment
@@ -27,54 +28,54 @@ provider "proxmox" {
 #=====================
 # Reverse Proxy Server
 #=====================
-module "reverse_proxy_server" {
-  source = "../../modules/proxmox_vm"
+# module "reverse_proxy_server" {
+#   source = "../../modules/proxmox_vm"
 
-  vm_name = "reverse_proxy-${var.environment}"
-  target_node = "pve1"
-  clone_template = "ubn-temp-1"
+#   vm_name = "reverse_proxy-${var.environment}"
+#   target_node = "pve1"
+#   clone_template = "ubn-temp-1"
 
-  cpu_cores = 2
-  memory_mb = 2024
-  disk_size_gb = 15
-  storage_pool = var.storage_pool
+#   cpu_cores = 2
+#   memory_mb = 2024
+#   disk_size_gb = 15
+#   storage_pool = var.storage_pool
 
-  network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.45/24"
-  gateway = "${local.network_base}.1"
-  nameserver = var.nameserver
+#   network_bridge = var.network_bridge
+#   ip_address = "${local.network_base}.45/24"
+#   gateway = "${local.network_base}.1"
+#   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
-  tags = "reverse-proxy,network,${var.environment}"
+#   ssh_public_key = var.ssh_public_key
+#   tags = "reverse-proxy,network,${var.environment}"
 
-  description = "Reverse Proxy Server - ${local.environment}"
-}
+#   description = "Reverse Proxy Server - ${local.environment}"
+# }
 
 #==================
 # Monitoring Server
 #==================
-module "monitoring_server" {
-  source = "../../modules/proxmox_vm"
+# module "monitoring_server" {
+#   source = "../../modules/proxmox_vm"
 
-  vm_name = "monitoring_server-${var.environment}"
-  target_node = "pve1"
-  clone_template = "ubn-temp-1"
+#   vm_name = "monitoring_server-${var.environment}"
+#   target_node = "pve1"
+#   clone_template = "ubn-temp-1"
 
-  cpu_cores = 2
-  memory_mb = 2024
-  disk_size_gb = 35
-  storage_pool = var.storage_pool
+#   cpu_cores = 2
+#   memory_mb = 2024
+#   disk_size_gb = 35
+#   storage_pool = var.storage_pool
 
-  network_bridge = var.network_bridge
-  ip_address = "${local.network_base}.67/24"
-  gateway = "${local.network_base}.1"
-  nameserver = var.nameserver
+#   network_bridge = var.network_bridge
+#   ip_address = "${local.network_base}.67/24"
+#   gateway = "${local.network_base}.1"
+#   nameserver = var.nameserver
 
-  ssh_public_key = var.ssh_public_key
-  tags = "monitoring,${var.environment}"
+#   ssh_public_key = var.ssh_public_key
+#   tags = "monitoring,${var.environment}"
 
-  description = "Monitoring Server - ${local.environment}"
-}
+#   description = "Monitoring Server - ${local.environment}"
+# }
 
 #=====================
 # Block Storage Server
