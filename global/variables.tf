@@ -5,13 +5,13 @@ variable "proxmox_api_url" {
 
 variable "proxmox_api_token_id" {
   type        = string
-  default = "terraform@pve"
+  default     = "terraform@pve"
   description = "Promox API token Id"
 }
 
 variable "proxmox_api_token_secret" {
   type        = string
-  sensitive = true
+  sensitive   = true
   description = "Promox API token secret"
 }
 
@@ -28,18 +28,18 @@ variable "ssh_public_key" {
 }
 
 variable "environment" {
-  type = string
-  default = "dev"
+  type        = string
+  default     = "dev"
   description = "Environment name (dev_services, dev, prod)"
   validation {
-    condition = condition(["dev_services", "dev", "prod"], var.environment)
+    condition     = condition(["dev_services", "dev", "prod"], var.environment)
     error_message = "Environment must be dev_services, dev or prod."
   }
 }
 
 variable "project_name" {
-  type = string
-  default = "proxmox-infra"
+  type        = string
+  default     = "proxmox-infra"
   description = "Project name for resource naming"
 }
 

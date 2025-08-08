@@ -54,7 +54,7 @@ resource "proxmox_vm_qemu" "cloudinit-Cockpit-Management-server" {
     firewall = true
     model    = "virtio"
   }
-  ipconfig0 = "ip=10.0.1.32/24,gw=10.0.1.1"
+  ipconfig0  = "ip=10.0.1.32/24,gw=10.0.1.1"
   nameserver = "1.1.1.1, 1.0.0.1"
 
   # SSH keys

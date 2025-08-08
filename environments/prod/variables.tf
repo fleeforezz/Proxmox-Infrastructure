@@ -8,13 +8,13 @@ variable "proxmox_api_url" {
 
 variable "proxmox_api_token_id" {
   type        = string
-  default = "terraform@pve"
+  default     = "terraform@pve"
   description = "Promox API token Id"
 }
 
 variable "proxmox_api_token_secret" {
   type        = string
-  sensitive = true
+  sensitive   = true
   description = "Promox API token secret"
 }
 
@@ -70,7 +70,7 @@ variable "ssh_public_key" {
 # Project Configuration
 #======================
 variable "project_name" {
-  type = string
-  default = "proxmox-infra"
+  type        = string
+  default     = "proxmox-infra"
   description = "Project name for resource naming"
 }

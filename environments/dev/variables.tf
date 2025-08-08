@@ -47,7 +47,7 @@ variable "vm_template" {
 
 variable "ciuser" {
   type        = string
-  default     = "user"
+  default     = "jso"
   description = "Cloud init username"
 }
 
