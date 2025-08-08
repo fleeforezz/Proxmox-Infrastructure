@@ -29,9 +29,11 @@ provider "proxmox" {
 module "development_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "development-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 8
   memory_mb    = 16384
@@ -43,7 +45,7 @@ module "development_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
-  ciuser         = "jso"
+  ciuser         = var.ciuser
   cipassword     = var.cipassword
   ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "development,${var.environment}"
@@ -58,8 +60,8 @@ module "dev_k8s_master_1_server" {
   source = "../../modules/proxmox-vm"
 
   vm_name        = "k8s-master-1-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
 
   cpu_cores    = 3
   memory_mb    = 4048
@@ -71,6 +73,8 @@ module "dev_k8s_master_1_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "container-orchestration,${var.environment}"
 
@@ -84,8 +88,8 @@ module "dev_k8s_worker_1_server" {
   source = "../../modules/proxmox-vm"
 
   vm_name        = "k8s-worker-1-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
 
   cpu_cores    = 3
   memory_mb    = 4048
@@ -97,6 +101,8 @@ module "dev_k8s_worker_1_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "container-orchestration,${var.environment}"
 

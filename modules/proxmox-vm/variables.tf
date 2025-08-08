@@ -1,3 +1,9 @@
+variable "vmid" {
+  type = number
+  default = null
+  description = "Id of the VM"
+}
+
 variable "vm_name" {
   type        = string
   description = "Name of the VM"
@@ -70,6 +76,12 @@ variable "nameserver" {
   type        = string
   default     = "1.1.1.1,1.0.0.1"
   description = "DNS servers"
+}
+
+variable "display_type" {
+  type = string
+  default = "virtio-gl"
+  description = "Display for VM"
 }
 
 variable "ssh_public_key" {

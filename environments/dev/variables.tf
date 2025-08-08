@@ -42,7 +42,7 @@ variable "environment" {
 variable "vm_template" {
   description = "VM template to clone from"
   type        = string
-  default     = "ubn-temp-1"
+  default     = "ubuntu-cloud"
 }
 
 variable "ciuser" {
@@ -74,6 +74,12 @@ variable "nameserver" {
   description = "DNS servers"
   type        = string
   default     = "1.1.1.1,1.0.0.1"
+}
+
+variable "display_type" {
+  type        = string
+  default     = "virtio-gl"
+  description = "Display type for VM"
 }
 
 #==================

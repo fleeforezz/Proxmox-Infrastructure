@@ -7,6 +7,7 @@ terraform {
 }
 
 resource "proxmox_vm_qemu" "vm" {
+  vmid   = var.vmid
   name   = var.vm_name
   agent  = 1
   onboot = true
@@ -65,5 +66,8 @@ resource "proxmox_vm_qemu" "vm" {
   }
   ipconfig0  = "ip=${var.ip_address},gw=${var.gateway}"
   nameserver = var.nameserver
+
+  display_type = var.display_type
+
   sshkeys    = var.ssh_public_key
 }
