@@ -62,7 +62,7 @@ module "cockpit_management_server" {
 
   cpu_cores = 3
   memory_mb = 4048
-  disk_size_gb = 25
+  disk_size_gb = 15
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
@@ -88,7 +88,7 @@ module "network_gate_server" {
 
   cpu_cores = 2
   memory_mb = 1024
-  disk_size_gb = 10
+  disk_size_gb = 15
   storage_pool = var.storage_pool
   
   network_bridge = var.network_bridge
