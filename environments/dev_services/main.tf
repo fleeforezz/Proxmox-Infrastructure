@@ -62,7 +62,7 @@ module "cockpit_management_server" {
 
   vmid           = null
   vm_name        = "cockpit-${var.environment}"
-  target_node    = "pve1"
+  target_node    = var.proxmox_node
   clone_template = var.vm_template
   display_type   = var.display_type
 
@@ -91,7 +91,7 @@ module "network_gate_server" {
   source = "../../modules/proxmox-vm"
 
   vmid           = null
-  vm_name        = "network_gate-${var.environment}"
+  vm_name        = "network-gate-${var.environment}"
   target_node    = var.proxmox_node
   clone_template = var.vm_template
   display_type   = var.display_type
@@ -121,7 +121,7 @@ module "reverse_proxy_server" {
   source = "../../modules/proxmox-vm"
 
   vmid           = null
-  vm_name        = "reverse_proxy-${var.environment}"
+  vm_name        = "reverse-proxy-${var.environment}"
   target_node    = var.proxmox_node
   clone_template = var.vm_template
   display_type   = var.display_type
