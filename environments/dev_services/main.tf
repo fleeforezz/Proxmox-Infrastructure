@@ -144,6 +144,36 @@ module "reverse_proxy_server" {
   description = "Reverse Proxy Server - ${local.environment}"
 }
 
+#===========
+# DNS Server
+#===========
+module "DNS_server" {
+  source = "../../modules/proxmox-vm"
+
+  vmid           = null
+  vm_name        = "pi-hole-${var.environment}"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
+
+  cpu_cores    = 2
+  memory_mb    = 2024
+  disk_size_gb = 15
+  storage_pool = var.storage_pool
+
+  network_bridge = var.network_bridge
+  ip_address     = "${local.network_base}.91/24"
+  gateway        = "${local.network_base}.1"
+  nameserver     = var.nameserver
+
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
+  ssh_public_key = join("\n", var.ssh_public_key)
+  tags           = "DNS,network,${var.environment}"
+
+  description = "DNS Server - ${local.environment}"
+}
+
 #==================
 # Monitoring Server
 #==================
