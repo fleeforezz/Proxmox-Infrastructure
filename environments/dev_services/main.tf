@@ -48,7 +48,7 @@ module "gitlab_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "version-control,${var.environment}"
 
   description = "Gitlab Version Control Server - ${local.environment}"
@@ -78,7 +78,7 @@ module "cockpit_management_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "management,${var.environment}"
 
   description = "Cockpit Management Server - ${local.environment}"
@@ -108,7 +108,7 @@ module "network_gate_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "network,${var.environment}"
 
   description = "Network Gate Server - ${local.environment}"
@@ -138,7 +138,7 @@ module "reverse_proxy_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "reverse-proxy,network,${var.environment}"
 
   description = "Reverse Proxy Server - ${local.environment}"
@@ -168,7 +168,7 @@ module "monitoring_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "monitoring,${var.environment}"
 
   description = "Monitoring Server - ${local.environment}"
@@ -198,7 +198,7 @@ module "security_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "security,${var.environment}"
 
   description = "Security Server - ${local.environment}"
@@ -228,7 +228,7 @@ module "game_server" {
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
-  ssh_public_key = [var.ssh_public_key]
+  ssh_public_key = join("\n", var.ssh_public_key)
   tags           = "game,${var.environment}"
 
   description = "Game Server - ${local.environment}"
