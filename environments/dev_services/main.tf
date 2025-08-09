@@ -101,7 +101,7 @@ module "network_gate_server" {
   disk_size_gb = 15
   storage_pool = var.storage_pool
 
-  network_bridge = var.network_bridge
+  network_bridge = "vmbr0"
   ip_address     = "${local.second_network_base}.78/24"
   gateway        = "${local.second_network_base}.1"
   nameserver     = var.nameserver
@@ -251,7 +251,7 @@ module "game_server" {
   disk_size_gb = 50
   storage_pool = var.storage_pool
 
-  network_bridge = var.network_bridge
+  network_bridge = "vmbr0"
   ip_address     = "${local.second_network_base}.100/24"
   gateway        = "${local.second_network_base}.1"
   nameserver     = var.nameserver
