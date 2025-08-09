@@ -30,9 +30,11 @@ provider "proxmox" {
 module "gitlab_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "gitlab-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type = var.display_type
 
   cpu_cores    = 4
   memory_mb    = 8192
@@ -44,6 +46,8 @@ module "gitlab_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "version-control,${var.environment}"
 
@@ -56,9 +60,11 @@ module "gitlab_server" {
 module "cockpit_management_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "cockpit-${var.environment}"
   target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  clone_template = var.vm_template
+  display_type = var.display_type
 
   cpu_cores    = 3
   memory_mb    = 4048
@@ -70,6 +76,8 @@ module "cockpit_management_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "management,${var.environment}"
 
@@ -82,9 +90,11 @@ module "cockpit_management_server" {
 module "network_gate_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "network_gate-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 2
   memory_mb    = 1024
@@ -96,6 +106,8 @@ module "network_gate_server" {
   gateway        = "${local.second_network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "network,${var.environment}"
 
@@ -108,9 +120,11 @@ module "network_gate_server" {
 module "reverse_proxy_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "reverse_proxy-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 2
   memory_mb    = 2024
@@ -122,6 +136,8 @@ module "reverse_proxy_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "reverse-proxy,network,${var.environment}"
 
@@ -134,9 +150,11 @@ module "reverse_proxy_server" {
 module "monitoring_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "monitoring-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 2
   memory_mb    = 2024
@@ -148,6 +166,8 @@ module "monitoring_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "monitoring,${var.environment}"
 
@@ -160,9 +180,11 @@ module "monitoring_server" {
 module "security_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "security-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 4
   memory_mb    = 4048
@@ -174,6 +196,8 @@ module "security_server" {
   gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "security,${var.environment}"
 
@@ -186,9 +210,11 @@ module "security_server" {
 module "game_server" {
   source = "../../modules/proxmox-vm"
 
+  vmid           = null
   vm_name        = "game-${var.environment}"
-  target_node    = "pve1"
-  clone_template = "ubn-temp-1"
+  target_node    = var.proxmox_node
+  clone_template = var.vm_template
+  display_type   = var.display_type
 
   cpu_cores    = 8
   memory_mb    = 16384
@@ -200,6 +226,8 @@ module "game_server" {
   gateway        = "${local.second_network_base}.1"
   nameserver     = var.nameserver
 
+  ciuser         = var.ciuser
+  cipassword     = var.cipassword
   ssh_public_key = [var.ssh_public_key]
   tags           = "game,${var.environment}"
 

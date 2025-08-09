@@ -45,6 +45,19 @@ variable "vm_template" {
   default     = "ubn-temp-1"
 }
 
+variable "ciuser" {
+  type        = string
+  default     = "jso"
+  description = "Cloud init username"
+}
+
+variable "cipassword" {
+  type        = string
+  default     = ""
+  sensitive   = true
+  description = "Cloud init user password"
+}
+
 variable "storage_pool" {
   description = "Storage pool name"
   type        = string
@@ -61,6 +74,12 @@ variable "nameserver" {
   description = "DNS servers"
   type        = string
   default     = "1.1.1.1,1.0.0.1"
+}
+
+variable "display_type" {
+  type        = string
+  default     = "virtio-gl"
+  description = "Display type (serial, std, virtio-gl, etc.)"
 }
 
 #==================
