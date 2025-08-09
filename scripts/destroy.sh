@@ -69,7 +69,7 @@ EOF
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        dev|staging|prod)
+        dev|dev_services|prod)
             ENVIRONMENT="$1"
             shift
             ;;
