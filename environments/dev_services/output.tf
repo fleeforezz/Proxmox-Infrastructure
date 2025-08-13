@@ -69,15 +69,3 @@ output "security_server" {
     vm_id      = module.security_server.vm_id
   }
 }
-
-#============
-# Game Server
-#============
-output "game_server" {
-  description = "Reverse Proxy Server"
-  value = {
-    name       = module.game_server.vm_name
-    ip_address = module.game_server.ip_address
-    vm_id      = module.game_server.vm_id
-  }
-}

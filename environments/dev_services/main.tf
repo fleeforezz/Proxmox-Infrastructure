@@ -234,32 +234,32 @@ module "security_server" {
   description = "Security Server - ${local.environment}"
 }
 
-#============
-# Game Server
-#============
-module "game_server" {
+#=============
+# CI/CD Server
+#=============
+module "cicd_server" {
   source = "../../modules/proxmox-vm"
 
   vmid           = null
-  vm_name        = "game-${var.environment}"
+  vm_name        = "cicd-${var.environment}"
   target_node    = var.proxmox_node
   clone_template = var.vm_template
   display_type   = var.display_type
 
-  cpu_cores    = 8
-  memory_mb    = 16384
+  cpu_cores    = 4
+  memory_mb    = 8962
   disk_size_gb = 50
   storage_pool = var.storage_pool
 
-  network_bridge = "vmbr0"
-  ip_address     = "${local.second_network_base}.100/24"
-  gateway        = "${local.second_network_base}.1"
+  network_bridge = var.network_bridge
+  ip_address     = "${local.network_base}.63/24"
+  gateway        = "${local.network_base}.1"
   nameserver     = var.nameserver
 
   ciuser         = var.ciuser
   cipassword     = var.cipassword
   ssh_public_key = join("\n", var.ssh_public_key)
-  tags           = "game,${var.environment}"
+  tags           = "cicd,${var.environment}"
 
-  description = "Game Server - ${local.environment}"
+  description = "CICD Server - ${local.environment}"
 }
